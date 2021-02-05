@@ -19,8 +19,13 @@ or use npm:
     unity --help
     
 ```JS
-
-
+Usage
+    $ unity <command>
+Options
+    --version, -v   Version number
+    --help, -h      Displays this message
+For more information run a command with the --help flag
+    $ unity build --help
 ```
 
 #### Windows Build
