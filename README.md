@@ -1,4 +1,4 @@
-# Build Unity Games
+# Unity Command Line
 
 Command line to build Unity games
 
@@ -7,7 +7,7 @@ Command line to build Unity games
 
 To install a stable release use:
 
-    yarn global add @frontekip/unity
+    yarn global add @frontekip/unity-cli
     
 or use npm:
 
@@ -16,11 +16,11 @@ or use npm:
 
 ## Quickstart 
 
-    unity --help
+    unity-cli --help
     
 ```JS
 Usage
-    $ unity <command>
+    $ unity-cli <command>
 Options
     --build, Build platform name <macos|windows>
     --version, Unity build version
@@ -28,17 +28,17 @@ Options
 
 #### Build
 
-    $ unity --build=<macos|windows> --version=<UnityVersion>
+    $ unity-cli --build=<macos|windows> --version=<UnityVersion>
     
 ##### Example
 
 ```JS
 
 // macos build
-unity --build=macos --version=2020.2.1f1
+unity-cli --build=macos --version=2020.2.1f1
 
 // windows build
-unity --build=windows --version=2020.2.1f1
+unity-cli --build=windows --version=2020.2.1f1
 ```
     
 After these commands, you can look in the `.build` folder.
