@@ -1,5 +1,5 @@
 {
-  "name": "@frontekip/unity-cli",
+  "name": "unity-cli",
   "version": "0.0.1",
   "description": "Command line to Unity games",
   "license": "MIT",
