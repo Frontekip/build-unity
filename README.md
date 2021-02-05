@@ -2,7 +2,7 @@
 Command line to build Unity games
 
 
-## Quickstart 
+## Installation 
 
 To install a stable release use:
 
@@ -12,3 +12,16 @@ or use npm:
 
     npm install @frontekip/build-unity -g
 
+
+## Quickstart 
+
+Windows Build
+
+    $ build-unity --windows .
+    
+MacOS
+
+    $ build-unity --macos .
+    
+    
+After these commands, you can look in the `.build` folder.
