@@ -22,9 +22,8 @@ or use npm:
 Usage
     $ unity <command>
 Options
-    --version, -v   Version number
-For more information run a command with the --help flag
-    $ unity --help
+    --build, Build platform name <macos|windows>
+    --version, Unity build version
 ```
 
 #### Build
