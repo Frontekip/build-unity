@@ -30,11 +30,11 @@ For more information run a command with the --help flag
 
 #### Windows Build
 
-    $ unity build --windows .
+    $ unity build --windows
     
 #### MacOS
 
-    $ unity build --macos .
+    $ unity build --macos
     
     
 After these commands, you can look in the `.build` folder.
