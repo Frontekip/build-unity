@@ -1,7 +1,7 @@
 {
-  "name": "build-unity",
+  "name": "unity-cli",
   "version": "0.0.0",
-  "repository": "https://github.com/Frontekip/build-unity.git",
+  "repository": "https://github.com/Frontekip/unity-cli.git",
   "author": "Yasar ICLI <yasaricli@gmail.com>",
 
   "scripts": {
