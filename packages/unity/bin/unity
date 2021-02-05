@@ -10,18 +10,18 @@ const arg = require('arg');
 const exec = require('child_process').exec;
 const ora = require('ora');
 const path = require('path');
-const package = require('../package.json');
+
+const ARGS_OPTIONS = {
+    permissive: true
+};
 
 const args = arg({
-    '--windows': Boolean,
-    '--macos': Boolean,
+    '--build': String,
+    '--version': String,
 
     // Aliases
-    '--version': Boolean,
     '--help': Boolean,
-}, {
-    permissive: true,
-});
+}, ARGS_OPTIONS);
 
 function runCmd(platform, cmd) {
     const spinner = ora(`Building ${platform}`).start();
@@ -43,54 +43,61 @@ function runCmd(platform, cmd) {
     });
 }
 
-const UNITY_VERSION = "2020.2.1f1";
-const MACOS_UNITY_PATH = `/Applications/Unity/Hub/Editor/${UNITY_VERSION}/Unity.app/Contents/MacOS/Unity`;
-
 // Make sure commands gracefully respect termination signals (e.g. from Docker)
 process.on('SIGTERM', () => process.exit(0));
 process.on('SIGINT', () => process.exit(0));
 
+
+if (args['--help']) {
+    console.log(`
+      Usage
+        $ unity <command>
+      Options
+        --version, -v   Version number
+        --help, -h      Displays this message
+      For more information run a command with the --help flag
+        $ unity --help
+    `);
+}
+
+
 (() => {
-    const isBuild = args._[0] == "build";
-    const isMacos = isBuild && args['--macos'];
-    const isWindows = isBuild && args['--windows'];
+    const unityVersion = args["--version"];
+    const os = args["--build"];
+
     const projectPath = path.resolve('.');
     const projectBuildPath = `${projectPath}/.builds`
+    const unityPath = `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
 
-    // const COMMAND = `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}`;
+    const BUILDS = {
+        macos() {
+            runCmd('MACOS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/macos/game`);
+        },
 
+        windows() {
+            runCmd('WINDOWS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/windows/game`);
+        }
+    };
 
-    if (args['--version']) {
+    if (!os) {
 
-        // show version
-        console.log(`Unity Build v${package.version}`);
+        return console.log(`
+Please use 
 
-        return process.exit(0);
-    }
-
-    if (args['--help']) {
-        console.log(`
-          Usage
-            $ unity <command>
-          Options
-            --version, -v   Version number
-            --help, -h      Displays this message
-          For more information run a command with the --help flag
-            $ unity build --help
+    --build=windows|macos
         `);
-    
-        return process.exit(0);
     }
 
 
-    if (isMacos) {
-        return runCmd('MACOS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/macos/game`);
+    if (!unityVersion) {
+        return console.log(`
+Please use:
+
+    --version=<unity-version>
+        `);
     }
 
-    if (isWindows) {
-        return runCmd('WINDOWS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/windows/game`);
-    }
-
-    return process.exit(0);
+    // run build
+    return BUILDS[os]();
 })();
 
