@@ -53,10 +53,8 @@ if (args['--help']) {
       Usage
         $ unity <command>
       Options
-        --version, -v   Version number
-        --help, -h      Displays this message
-      For more information run a command with the --help flag
-        $ unity --help
+        --build, Build platform name <macos|windows>
+        --version, Unity build version
     `);
 }
 
