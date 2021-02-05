@@ -1,0 +1,7 @@
+{
+  "name": "@frontekip/unity",
+  "version": "0.0.1",
+  "description": "Command line to build Unity games",
+  "main": "index.js",
+  "license": "MIT"
+}

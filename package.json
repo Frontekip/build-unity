@@ -1,0 +1,17 @@
+{
+  "name": "build-unity",
+  "version": "0.0.0",
+  "repository": "https://github.com/Frontekip/build-unity.git",
+  "author": "Yasar ICLI <yasaricli@gmail.com>",
+
+  "scripts": {
+    "lerna:clean": "lerna clean --yes",
+    "lerna:bootstrap": "lerna bootstrap",
+    "lerna:publish": "lerna publish",
+    "lerna:test": "lerna exec yarn test"
+  },
+
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
