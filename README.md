@@ -23,16 +23,13 @@ or use npm:
 
 ```
 
-
-
-
 #### Windows Build
 
-    $ build-unity --windows .
+    $ unity build --windows .
     
 #### MacOS
 
-    $ build-unity --macos .
+    $ unity build --macos .
     
     
 After these commands, you can look in the `.build` folder.
