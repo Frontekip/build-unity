@@ -84,11 +84,11 @@ process.on('SIGINT', () => process.exit(0));
 
 
     if (isMacos) {
-        return runCmd('MACOS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/.builds/macos`);
+        return runCmd('MACOS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/macos/game`);
     }
 
     if (isWindows) {
-        return runCmd('WINDOWS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/.builds/windows`);
+        return runCmd('WINDOWS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/windows/game`);
     }
 
     return process.exit(0);
