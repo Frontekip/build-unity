@@ -1,3 +1,96 @@
 #!/usr/bin/env node
 
-console.log("Hello");
+/*
+ * Manual Command Lines
+ * XXX: https://docs.unity3d.com/Manual/CommandLineArguments.html
+ */
+
+
+const arg = require('arg');
+const exec = require('child_process').exec;
+const ora = require('ora');
+const path = require('path');
+const package = require('../package.json');
+
+const args = arg({
+    '--windows': Boolean,
+    '--macos': Boolean,
+
+    // Aliases
+    '--version': Boolean,
+    '--help': Boolean,
+}, {
+    permissive: true,
+});
+
+function runCmd(platform, cmd) {
+    const spinner = ora(`Building ${platform}`).start();
+
+    exec(cmd, (error, stdout, stderr) => {
+
+        // Spinner Stop
+        spinner.stop();
+
+        // fail or successed
+        error ? spinner.fail("Building ERROR") : spinner.succeed("Build SUCCESS");
+
+        // show logs
+        console.log(stdout);
+        console.log(stderr);
+
+        // exit
+        process.exit(0);
+    });
+}
+
+const UNITY_VERSION = "2020.2.1f1";
+const MACOS_UNITY_PATH = `/Applications/Unity/Hub/Editor/${UNITY_VERSION}/Unity.app/Contents/MacOS/Unity`;
+
+// Make sure commands gracefully respect termination signals (e.g. from Docker)
+process.on('SIGTERM', () => process.exit(0));
+process.on('SIGINT', () => process.exit(0));
+
+(() => {
+    const isBuild = args._[0] == "build";
+    const isMacos = isBuild && args['--macos'];
+    const isWindows = isBuild && args['--windows'];
+    const projectPath = path.resolve('.');
+    const projectBuildPath = `${projectPath}/.builds`
+
+    // const COMMAND = `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}`;
+
+
+    if (args['--version']) {
+
+        // show version
+        console.log(`Unity Build v${package.version}`);
+
+        return process.exit(0);
+    }
+
+    if (args['--help']) {
+        console.log(`
+          Usage
+            $ unity <command>
+          Options
+            --version, -v   Version number
+            --help, -h      Displays this message
+          For more information run a command with the --help flag
+            $ unity build --help
+        `);
+    
+        return process.exit(0);
+    }
+
+
+    if (isMacos) {
+        return runCmd('MACOS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/.builds/macos`);
+    }
+
+    if (isWindows) {
+        return runCmd('WINDOWS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/.builds/windows`);
+    }
+
+    return rocess.exit(0);
+})();
+
