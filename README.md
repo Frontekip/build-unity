@@ -7,16 +7,16 @@ Command line to build Unity games
 
 To install a stable release use:
 
-    yarn add @frontekip/build-unity -g
+    yarn add @frontekip/unity -g
     
 or use npm:
 
-    npm install @frontekip/build-unity -g
+    npm install @frontekip/unity -g
 
 
 ## Quickstart 
 
-    build-unity --help
+    unity --help
     
 ```JS
 
