@@ -23,18 +23,17 @@ Usage
     $ unity <command>
 Options
     --version, -v   Version number
-    --help, -h      Displays this message
 For more information run a command with the --help flag
-    $ unity build --help
+    $ unity --help
 ```
 
 #### Windows Build
 
-    $ unity build --windows
+    $ unity --build=macos --version=2020.2.1f1
     
 #### MacOS
 
-    $ unity build --macos
+    $ unity --build=windows --version=2020.2.1f1
     
-    
+
 After these commands, you can look in the `.build` folder.
