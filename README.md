@@ -15,11 +15,21 @@ or use npm:
 
 ## Quickstart 
 
-Windows Build
+    build-unity --help
+    
+```JS
+
+
+```
+
+
+
+
+#### Windows Build
 
     $ build-unity --windows .
     
-MacOS
+#### MacOS
 
     $ build-unity --macos .
     
