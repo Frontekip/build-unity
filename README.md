@@ -27,13 +27,19 @@ For more information run a command with the --help flag
     $ unity --help
 ```
 
-#### Windows Build
+#### Build
 
-    $ unity --build=macos --version=2020.2.1f1
+    $ unity --build=<macos|windows> --version=<UnityVersion>
     
-#### MacOS
+##### Example
 
-    $ unity --build=windows --version=2020.2.1f1
+```JS
+
+// macos build
+unity --build=macos --version=2020.2.1f1
+
+// windows build
+unity --build=windows --version=2020.2.1f1
+```
     
-
 After these commands, you can look in the `.build` folder.
