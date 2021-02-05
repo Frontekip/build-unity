@@ -91,6 +91,6 @@ process.on('SIGINT', () => process.exit(0));
         return runCmd('WINDOWS', `${MACOS_UNITY_PATH} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/.builds/windows`);
     }
 
-    return rocess.exit(0);
+    return process.exit(0);
 })();
 
