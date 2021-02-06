@@ -5,43 +5,14 @@
  * XXX: https://docs.unity3d.com/Manual/CommandLineArguments.html
  */
 
-
 const arg = require('arg');
-const exec = require('child_process').exec;
-const ora = require('ora');
 const path = require('path');
 
-const ARGS_OPTIONS = {
-    permissive: true
-};
+const UnityCliExec = require("unity-cli-exec");
+const UnityCliUtils = require("unity-cli-utils");
 
-const args = arg({
-    '--build': String,
-    '--version': String,
+const args = arg(UnityCliUtils.ARGS, UnityCliUtils.ARGS_OPTIONS);
 
-    // Aliases
-    '--help': Boolean,
-}, ARGS_OPTIONS);
-
-function runCmd(platform, cmd) {
-    const spinner = ora(`Building ${platform}`).start();
-
-    exec(cmd, (error, stdout, stderr) => {
-
-        // Spinner Stop
-        spinner.stop();
-
-        // fail or successed
-        error ? spinner.fail("Building ERROR") : spinner.succeed("Build SUCCESS");
-
-        // show logs
-        console.log(stdout);
-        console.log(stderr);
-
-        // exit
-        process.exit(0);
-    });
-}
 
 // Make sure commands gracefully respect termination signals (e.g. from Docker)
 process.on('SIGTERM', () => process.exit(0));
@@ -63,17 +34,13 @@ if (args['--help']) {
     const unityVersion = args["--version"];
     const os = args["--build"];
 
-    const projectPath = path.resolve('.');
-    const projectBuildPath = `${projectPath}/.builds`
-    const unityPath = `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
-
     const BUILDS = {
         macos() {
-            runCmd('MACOS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/MacOS/game`);
+            return UnityCliExec.exec("Building MacOS", buildCommand("macos", unityVersion), () => process.exit(0));
         },
 
         windows() {
-            runCmd('WINDOWS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/Windows/game`);
+            return UnityCliExec.exec("Building Windows", buildCommand("windows", unityVersion), () => process.exit(0));
         }
     };
 
