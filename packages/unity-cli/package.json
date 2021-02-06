@@ -8,6 +8,8 @@
     "unity-cli": "./bin/unity-cli"
   },
   "dependencies": {
-    "arg": "^5.0.0"
+    "arg": "^5.0.0",
+    "unity-cli-exec": "^0.0.5",
+    "unity-cli-utils": "^0.0.5"
   }
 }

@@ -6,13 +6,11 @@
  */
 
 const arg = require('arg');
-const path = require('path');
 
 const UnityCliExec = require("unity-cli-exec");
 const UnityCliUtils = require("unity-cli-utils");
 
 const args = arg(UnityCliUtils.ARGS, UnityCliUtils.ARGS_OPTIONS);
-
 
 // Make sure commands gracefully respect termination signals (e.g. from Docker)
 process.on('SIGTERM', () => process.exit(0));
@@ -36,11 +34,15 @@ if (args['--help']) {
 
     const BUILDS = {
         macos() {
-            return UnityCliExec.exec("Building MacOS", buildCommand("macos", unityVersion), () => process.exit(0));
+
+            return console.log(UnityCliUtils.buildCommand("macos", unityVersion));
+
+
+            return UnityCliExec.cmd("Building MacOS", UnityCliUtils.buildCommand("macos", unityVersion), () => process.exit(0));
         },
 
         windows() {
-            return UnityCliExec.exec("Building Windows", buildCommand("windows", unityVersion), () => process.exit(0));
+            return UnityCliExec.cmd("Building Windows", UnityCliUtils.buildCommand("windows", unityVersion), () => process.exit(0));
         }
     };
 
