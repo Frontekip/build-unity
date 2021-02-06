@@ -1,6 +1,6 @@
 {
   "name": "unity-cli-exec",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Unity Cli Exec",
   "license": "MIT",
   "main": "./src/index.js",
