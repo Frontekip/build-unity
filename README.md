@@ -1,6 +1,6 @@
-# Unity Command Line
+# unit-cli
 
-Command line to build Unity games
+> Command line to build Unity games
 
 
 
