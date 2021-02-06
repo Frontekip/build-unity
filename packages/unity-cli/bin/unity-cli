@@ -69,11 +69,11 @@ if (args['--help']) {
 
     const BUILDS = {
         macos() {
-            runCmd('MACOS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/macos/game`);
+            runCmd('MACOS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildOSXUniversalPlayer ${projectBuildPath}/MacOS/game`);
         },
 
         windows() {
-            runCmd('WINDOWS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/windows/game`);
+            runCmd('WINDOWS', `${unityPath} -quit -batchmode -logFile stdout.log -projectPath ${projectPath} -buildWindows64Player ${projectBuildPath}/Windows/game`);
         }
     };
 
