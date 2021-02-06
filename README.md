@@ -1,6 +1,7 @@
-# Unity Command Line
+# unit-cli
 
-Command line to build Unity games
+> Command line to build Unity games
+
 
 
 ## Installation 
@@ -25,7 +26,11 @@ Options
     --version, Unity build version
 ```
 
+
 #### Build
+
+> The `unity-cli` command  only when unity is turned off.
+
 
     $ unity-cli --build=<macos|windows> --version=<UnityVersion>
     
