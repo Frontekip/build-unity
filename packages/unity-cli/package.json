@@ -2,6 +2,7 @@
   "name": "unity-cli",
   "version": "0.0.6",
   "description": "Command line to Unity games",
+  "repository": "https://github.com/Frontekip/unity-cli.git",
   "license": "MIT",
   "main": "./src/index.js",
   "bin": {
