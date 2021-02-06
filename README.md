@@ -3,6 +3,7 @@
 Command line to build Unity games
 
 
+
 ## Installation 
 
 To install a stable release use:
@@ -25,7 +26,11 @@ Options
     --version, Unity build version
 ```
 
+
 #### Build
+
+> The `unity-cli` command  only when unity is turned off.
+
 
     $ unity-cli --build=<macos|windows> --version=<UnityVersion>
     
