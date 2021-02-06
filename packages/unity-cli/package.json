@@ -1,6 +1,6 @@
 {
   "name": "unity-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Command line to Unity games",
   "license": "MIT",
   "main": "./src/index.js",
@@ -10,6 +10,6 @@
   "dependencies": {
     "arg": "^5.0.0",
     "unity-cli-exec": "^0.0.5",
-    "unity-cli-utils": "^0.0.5"
+    "unity-cli-utils": "^0.0.6"
   }
 }
