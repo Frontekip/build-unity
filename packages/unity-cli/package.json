@@ -1,6 +1,6 @@
 {
   "name": "unity-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Command line to Unity games",
   "repository": "https://github.com/Frontekip/unity-cli.git",
   "license": "MIT",
@@ -11,6 +11,6 @@
   "dependencies": {
     "arg": "^5.0.0",
     "unity-cli-exec": "^0.0.5",
-    "unity-cli-utils": "^0.0.6"
+    "unity-cli-utils": "^0.0.7"
   }
 }

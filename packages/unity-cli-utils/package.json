@@ -1,6 +1,6 @@
 {
   "name": "unity-cli-utils",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Unity Cli Utils",
   "license": "MIT",
   "main": "./src/index.js",
