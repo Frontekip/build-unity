@@ -34,10 +34,6 @@ if (args['--help']) {
 
     const BUILDS = {
         macos() {
-
-            return console.log(UnityCliUtils.buildCommand("macos", unityVersion));
-
-
             return UnityCliExec.cmd("Building MacOS", UnityCliUtils.buildCommand("macos", unityVersion), () => process.exit(0));
         },
 
